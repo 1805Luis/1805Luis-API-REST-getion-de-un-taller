@@ -1,0 +1,43 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: Gestión de Trabajos 
+
+servers:
+  - url: http://127.0.0.1:80/api/v1
+
+tags:
+  - name: Trabajo
+    description: Trabajo
+
+paths:
+  /trabajos: 
+    $ref: 'trabajos.yaml'
+  /trabajos/{trabajo_id}:
+    $ref: 'trabajos_id.yaml'
+
+components:
+  schemas:
+    Trabajo:
+      $ref: 'schemas.yaml#/Trabajo'
+    ID_Trabajo:
+      $ref: 'schemas.yaml#/ID_Trabajo'
+    TIPO_Trabajo:
+      $ref: 'schemas.yaml#/TIPO_Trabajo'
+    DESCRIPCION_Trabajo:
+      $ref: 'schemas.yaml#/DESCRIPCION_Trabajo'
+    VEHICULO_Trabajo:
+      $ref: 'schemas.yaml#/VEHICULO_Trabajo'
+    ESTADO_Trabajo:
+      $ref: 'schemas.yaml#/ESTADO_Trabajo'
+    DURACION_Trabajo:
+      $ref: 'schemas.yaml#/DURACION_Trabajo'
+    VIN_Trabajo:
+      $ref: 'schemas.yaml#/VIN_Trabajo'
+         
+    HTTP_Problem:
+      $ref: 'schemas.yaml#/HTTP_Problem'
+    Link:
+      $ref: 'schemas.yaml#/Link'
+  

@@ -1,0 +1,50 @@
+#examples:
+trabajo-example:
+  value:
+    trabajo: 
+    - { "trabajo": { "id": "AA-1","tipo": "Limpieza de la carrocería" ,"description": "Eliminar la suciedad, el polvo, los residuos y otras impurezas que se acumulan en la superficie exterior del automóvil. Esta tarea incluye productos de limpieza adecuados para garantizar que la carrocería del vehículo se mantenga en buenas condiciones y con un aspecto limpio y brillante.","vehiculo_aplica":"Automoviles, Autobuses","estado": "Planificado","duracion":"1 hora","vin_Vehiculo": "1HGCM82633A123456",
+        "links": {
+            "parent": { "href": "https://example.com/api/v1/trabajos", "rel": "trabajo_post trabajo_cget"},
+            "self": { "href": "https://example.com/api/v1/trabajos/AA-1", "rel": "trabajo_get trabajo_delete trabajo_put" }
+        }
+      } }
+    links: {
+      "prevPage": { "href": "https://example.com/api/v1/trabajos?page=2", "rel": "prevPage" },
+      "nextPage": { "href": "https://example.com/api/v1/trabajos?page=4", "rel": "nextPage" }
+    }
+
+response-http-400:
+  value:
+    type: https://httpstatuses.com/400
+    title: UNPROCESSABLE ENTITY
+    status: 400
+    detail: El identificador único ya existe
+    instance: about:blank
+response-http-404:
+  value:
+    type: https://httpstatuses.com/404
+    title: NOT FOUND
+    status: 404
+    detail: El recurso solicitado no está disponible.
+    instance: about:blank
+response-http-409:
+  value:
+    type: https://httpstatuses.com/409
+    title: NOT FOUND
+    status: 409
+    detail: El recurso no reúne las condiciones requeridas para la operación.
+    instance: about:blank
+response-http-412:
+  value:
+    type: https://httpstatuses.com/412
+    title: PRECONDITION FAILED
+    status: 412
+    detail: El ETag proporcionado no está actualizado
+    instance: about:blank
+response-http-422:
+  value:
+    type: https://httpstatuses.com/422
+    title: UNPROCESSABLE ENTITY
+    status: 422
+    detail: Falta alguno de los atributos obligatorios o contiene un valor no admitido
+    instance: about:blank

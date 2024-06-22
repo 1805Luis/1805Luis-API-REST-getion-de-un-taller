@@ -1,0 +1,46 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: Gestión de Facturas 
+
+servers:
+  - url: http://127.0.0.1:80/api/v1
+
+tags:
+  - name: Factura
+    description: Factura
+
+paths:
+  /facturas: 
+    $ref: 'facturas.yaml'
+  /facturas/{factura_id}:
+    $ref: 'facturas_id.yaml'
+
+components:
+  schemas:
+    Factura:
+      $ref: 'schemas.yaml#/Factura'
+    ID_Notificacion:
+      $ref: 'schemas.yaml#/ID_Factura'
+    VIN_Factura:
+      $ref: 'schemas.yaml#/VIN_Factura'
+    ESTADO_Notificacion:
+      $ref: 'schemas.yaml#/CLIENTE_Factura'
+    CREACION_Notificacion:
+      $ref: 'schemas.yaml#/CREACION_Factura'
+    DESCRIPCION_Factura:
+      $ref: 'schemas.yaml#/DESCRIPCION_Factura'
+    IMPORTE_Factura:
+      $ref: 'schemas.yaml#/IMPORTE_Factura'
+    Pago_Factura:
+      $ref: 'schemas.yaml#/Pago_Factura'
+    ESTADO_Factura:
+      $ref: 'schemas.yaml#/ESTADO_Factura'
+  
+         
+    HTTP_Problem:
+      $ref: 'schemas.yaml#/HTTP_Problem'
+    Link:
+      $ref: 'schemas.yaml#/Link'
+  

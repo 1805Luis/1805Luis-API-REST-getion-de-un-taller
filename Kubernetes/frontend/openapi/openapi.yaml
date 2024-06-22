@@ -1,0 +1,134 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: Gestión de talleres de mecánica rápida 🧑‍🔧
+  description: >
+   API Rest para la gestión de microservicios de un taller de mecánica (kubernetes) 
+
+servers:
+  - url: http://127.0.0.1:80/api/v1 
+
+paths:
+  /clientes: 
+    $ref: './clientes/clientes.yaml'
+  /clientes/{cliente_id}:
+    $ref: './clientes/clientes_id.yaml'
+
+  /facturas: 
+    $ref: './facturas/facturas.yaml'
+  /facturas/{factura_id}:
+    $ref: './facturas/facturas_id.yaml'
+  
+  /logs: 
+    $ref: './logs/logs.yaml'
+  /logs/{log_id}:
+    $ref: './logs/logs_id.yaml'
+  
+  /notificaciones: 
+    $ref: './notificaciones/notificaciones.yaml'
+  /notificaciones/{notificacion_id}:
+    $ref: './notificaciones/notificaciones_id.yaml'
+
+  /recambios:
+    $ref: './recambios/recambios.yaml'
+  /recambios/{recambio_nSerie}:
+    $ref: './recambios/recambios_ns.yaml'
+
+  /trabajos: 
+    $ref: './trabajos/trabajos.yaml'
+  /trabajos/{trabajo_id}:
+    $ref: './trabajos/trabajos_id.yaml'
+
+  /vehiculos: 
+    $ref: './vehiculos/vehiculos.yaml'
+  /vehiculos/{vehiculo_VIN}:
+    $ref: './vehiculos/vehiculos_vin.yaml'
+
+
+
+components:
+  schemas:
+
+    Clientes:
+      type: object
+      properties:
+        Cliente:
+          $ref: './clientes/schemas.yaml#/Cliente'
+
+        HTTP_Problem:
+          $ref: './clientes/schemas.yaml#/HTTP_Problem'
+        Link:
+          $ref: './clientes/schemas.yaml#/Link'
+
+    Facturas:
+      type: object
+      properties:
+        Factura:
+          $ref: './facturas/schemas.yaml#/Factura'
+
+        HTTP_Problem:
+          $ref: './facturas/schemas.yaml#/HTTP_Problem'
+        Link:
+          $ref: './facturas/schemas.yaml#/Link'
+
+    Logs:
+      type: object
+      properties:
+        Log:
+          $ref: './logs/schemas.yaml#/Log'
+
+        HTTP_Problem:
+          $ref: './logs/schemas.yaml#/HTTP_Problem'
+        Link:
+          $ref: './logs/schemas.yaml#/Link'
+    
+    Notificaciones:
+      type: object
+      properties:
+        Notificacion:
+          $ref: './notificaciones/schemas.yaml#/Notificacion'
+
+        HTTP_Problem:
+          $ref: './notificaciones/schemas.yaml#/HTTP_Problem'
+        Link:
+          $ref: './notificaciones/schemas.yaml#/Link'
+
+    Recambios:
+      type: object
+      properties:
+        Recambio:
+          $ref: './recambios/schemas.yaml#/Recambio'
+        
+        HTTP_Problem:
+          $ref: './recambios/schemas.yaml#/HTTP_Problem'
+        Link:
+          $ref: './recambios/schemas.yaml#/Link'
+    
+    Trabajos:
+      type: object
+      properties:
+        Trabajo:
+          $ref: './trabajos/schemas.yaml#/Trabajo'
+
+        HTTP_Problem:
+          $ref: './trabajos/schemas.yaml#/HTTP_Problem'
+        Link:
+          $ref: './trabajos/schemas.yaml#/Link'
+    
+    Vehiculos:
+      type: object
+      properties:
+        Vehiculo:
+          $ref: './vehiculos/schemas.yaml#/Vehiculo'
+
+        HTTP_Problem:
+          $ref: './vehiculos/schemas.yaml#/HTTP_Problem'
+        Link:
+          $ref: './vehiculos/schemas.yaml#/Link'
+
+
+
+
+    
+  

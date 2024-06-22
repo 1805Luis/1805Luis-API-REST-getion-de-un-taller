@@ -1,0 +1,40 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: Gestión de Logs 
+
+servers:
+  - url: http://127.0.0.1:80/api/v1
+
+tags:
+  - name: Log
+    description: Log
+
+paths:
+  /logs: 
+    $ref: 'logs.yaml'
+  /logs/{log_id}:
+    $ref: 'logs_id.yaml'
+
+components:
+  schemas:
+    Log:
+      $ref: 'schemas.yaml#/Log'
+    ID_Trabajo:
+      $ref: 'schemas.yaml#/ID_Log'
+    PRIORIDAD_Log:
+      $ref: 'schemas.yaml#/PRIORIDAD_Log'
+    DESCRIPCION_Log:
+      $ref: 'schemas.yaml#/DESCRIPCION_Log'
+    SUBSISTEMA_Log:
+      $ref: 'schemas.yaml#/SUBSISTEMA_Log'
+    FECHA_Log:
+      $ref: 'schemas.yaml#/FECHA_Log'
+    
+         
+    HTTP_Problem:
+      $ref: 'schemas.yaml#/HTTP_Problem'
+    Link:
+      $ref: 'schemas.yaml#/Link'
+  

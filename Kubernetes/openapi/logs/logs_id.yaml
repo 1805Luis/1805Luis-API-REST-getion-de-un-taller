@@ -1,0 +1,81 @@
+
+parameters:
+  - $ref: 'parameters.yaml#/ID'
+options:
+  summary: Proporciona la lista de los métodos HTTP soportados por esta ruta.
+  description: Devuelve una cabecera `Allow` con la lista de métodos HTTP soportados (separados por comas).
+  operationId: log_options
+  tags: [ 'Log' ]
+  responses:
+    '204':
+      description: 'cabecera `Allow` &lt;El cuerpo de la respuesta está vacío&gt;'
+      headers:
+        Allow:
+          $ref: 'headers.yaml#/Allow'
+get:
+  summary: Obtiene un log identificado por `id`
+  description: |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+    
+    | Status Code | Descripción | Motivo                             |
+    | ------------| ------------| -----------------------------------|
+    | **200**     | Existe      | Si el log existe               |
+    | **404**     | No existe   | Si no existe el log            |
+  operationId: log_get
+  tags: [ 'Log' ]
+  responses:
+    '200':
+      description: Log
+      headers:
+        ETag:
+          $ref: 'headers.yaml#/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas.yaml#/Log'
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+delete:
+  summary: Elimina el log identificado por `id`
+  description: |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+    
+    | Status Code      | Descripción  | Motivo                                    |
+    | ---------------- | -------------| ------------------------------------------|
+    | **204**          |SIN CONTENIDO | El log existía y ha sido eliminada    |
+    | **404**          |NO ENCONTRADO | Si el log no existe                   |
+  operationId: log_delete
+  tags: [ 'Log' ]
+  responses:
+    '204':
+      description: log eliminada &lt;Cuerpo de la respuesta vacío&gt;
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+put:
+  tags: [ 'Log' ]
+  summary: Modifica el log identificado por `id`.
+  description:  |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+
+    | Status Code | Descripción            | Motivo                                        |
+    | ------------| -----------------------| ----------------------------------------------|
+    | **209**     | CONTENIDO DEVUELTO     | El log existía y ha sido actualizada      |
+    | **404**     | NO ENCONTRADO          | Si el log no existe                       |
+    | **412**     | CONDICIÓN PREVIA FALLÓ | Si el Tag proporcionado no está actualizado   |
+    | **422**     | ENTIDAD NO PROCESABLE  | Valor no permitido en alguno de los attributos|
+  operationId: log_put
+  parameters:
+    - $ref: 'parameters.yaml#/ifMatchParam'
+  responses:
+    '209':
+      description: '`CONTENT RETURNED`: el log ha sido actualizado'
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas.yaml#/Log'
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+    '412':
+      $ref: 'responses.yaml#/Response_412'
+    '422':
+      $ref: 'responses.yaml#/Response_422'

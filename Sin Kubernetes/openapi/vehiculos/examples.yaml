@@ -1,0 +1,50 @@
+#examples:
+vehiculo-example:
+  value:
+    vehiculo: 
+    - { "vehiculo": { "vin": "1HGCM82633A123456","matricula": "1111DDD" ,"modelo": "Toyota Camry" ,"estado":"En tratamiento","dni": "01234567T",
+        "links": {
+            "parent": { "href": "https://example.com/api/v1/vehiculos", "rel": "vehiculo_post vehiculo_cget"},
+            "self": { "href": "https://example.com/api/v1/vehiculos/1HGCM82633A123456", "rel": "vehiculo_get vehiculo_delete vehiculo_put" }
+        }
+      } }
+    links: {
+      "prevPage": { "href": "https://example.com/api/v1/vehiculos?page=2", "rel": "prevPage" },
+      "nextPage": { "href": "https://example.com/api/v1/vehiculos?page=4", "rel": "nextPage" }
+    }
+
+response-http-400:
+  value:
+    type: https://httpstatuses.com/400
+    title: UNPROCESSABLE ENTITY
+    status: 400
+    detail: El identificador único ya existe
+    instance: about:blank
+response-http-404:
+  value:
+    type: https://httpstatuses.com/404
+    title: NOT FOUND
+    status: 404
+    detail: El recurso solicitado no está disponible.
+    instance: about:blank
+response-http-409:
+  value:
+    type: https://httpstatuses.com/409
+    title: NOT FOUND
+    status: 409
+    detail: El recurso no reúne las condiciones requeridas para la operación.
+    instance: about:blank
+response-http-412:
+  value:
+    type: https://httpstatuses.com/412
+    title: PRECONDITION FAILED
+    status: 412
+    detail: El ETag proporcionado no está actualizado
+    instance: about:blank
+response-http-422:
+  value:
+    type: https://httpstatuses.com/422
+    title: UNPROCESSABLE ENTITY
+    status: 422
+    detail: Falta alguno de los atributos obligatorios o contiene un valor no admitido
+    instance: about:blank

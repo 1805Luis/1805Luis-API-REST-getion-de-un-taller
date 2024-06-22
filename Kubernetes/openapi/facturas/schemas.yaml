@@ -1,0 +1,134 @@
+
+Factura:
+  title: 'Factura del taller'
+  description: >
+    Documento que una vez terminados todos los trabajos solicitados por un cliente, quedarán reflejados en dicho documento que su importe.
+  type: object
+  properties:
+    factura:
+      type: object
+      required: [id,vehiculo,dni_cliente,emision,descripcion,importe,pago,estado]
+      properties:
+        id:
+          $ref: '#/ID_Factura'
+        vehiculo:
+          $ref: '#/VIN_Factura'
+        dni_cliente:
+          $ref: '#/CLIENTE_Factura'
+        emision:
+          $ref: '#/CREACION_Factura'
+        descripcion:
+          $ref: '#/DESCRIPCION_Factura'
+        importe:
+          $ref: '#/IMPORTE_Factura'
+        pago:
+          $ref: '#/Pago_Factura'
+        estado:
+           $ref: '#/ESTADO_Factura'
+       
+
+        links:
+          description: Enlaces de relación del vehiculo
+          readOnly: true
+          type: object
+          properties:
+            parent:
+              $ref: '#/Link'
+            self:
+              $ref: '#/Link'
+
+ID_Factura:
+  title: Identificador de la factura
+  type: string
+  pattern: '^[A-Z0-9+-*/()&%!]{2,14}$'
+  example: "+9*)"
+
+VIN_Factura:
+  title: Identificador único del vehiculo
+  type: string
+  pattern: '^[A-HJ-NPR-Z0-9]{17}$'
+  example: "1HGCM82633A123456"
+
+CLIENTE_Factura:
+  title: DNI del cliente
+  type: string
+  pattern: "^[0-9]{8}[A-Z]{1}$"
+  example: "01234567T"
+
+CREACION_Factura:
+  title: Hora y fecha en la que se emite la notificacion
+  type: string
+  pattern: '^[0-9]{2}:[0-9]{2}-[0-9]{2}/[0-9]{2}/[0-9]{4}$'
+  example: "13:31-13/06/2023"
+
+DESCRIPCION_Factura:
+  title: Trabajos realizados al vehiculo
+  type: string
+  example: "Cambio del aceite, liquido refrigerante, limpieza completa, cambio de las ruedas delanteras"
+
+IMPORTE_Factura:
+  title: Importe total
+  type: number
+  format: double
+  example: 158.96
+
+Pago_Factura:
+  title: Como paga la factura
+  type: string
+  enum:
+    - Metalico
+    - Tarjeta
+
+ESTADO_Factura:
+  title: Si ha pagado o no 
+  type: string
+  enum:
+    - Pendiente
+    - Pagada
+
+HTTP_Problem:
+  type: object
+  externalDocs:
+    url: https://tools.ietf.org/html/rfc7807
+  description: |
+    Problem Details for HTTP APIs
+    [https://tools.ietf.org/html/rfc7807](https://tools.ietf.org/html/rfc7807)
+  properties:
+    type:
+      type: string
+      format: uri
+      description: A URI reference [RFC3986] that identifies the problem type
+    title:
+      type: string
+      description: short human-readable summary of the problem type
+    status:
+      type: number
+      description: HTTP status code
+    detail:
+      type: string
+      description: Human-readable explanation specific to this occurrence of the problem
+    instance:
+      type: string
+      format: uri
+      description: >
+        A URI reference that identifies the specific occurrence of the problem.
+        It may or may not yield further information if dereferenced.
+
+Link:
+  description: Enlace de relación
+  title: '🔗 Link'
+  type: object
+  properties:
+    href:
+      description: URL del enlace
+      type: string
+      format: uri
+      x-faker: internet.url
+    rel:
+      description: "Relación del recurso enlazado con el actual. Contiene una lista de tipos
+                de relaciones separados por espacio."
+      type: string
+      x-faker: lorem.words
+  example:
+    href: https://www.example.com/path/resource
+    rel: relAction1 relAction2

@@ -1,0 +1,25 @@
+#requestBodies:
+vehiculoRB:
+  description: Información de un nuevo recambio
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [vin,matricula,dni]
+        properties:
+          vin:
+            $ref: 'schemas.yaml#/VIN_Vehiculo'
+          matricula:
+            $ref: 'schemas.yaml#/MATRICULA_Vehiculo'
+          modelo:
+            $ref: 'schemas.yaml#/MODELO_Vehiculo'
+          estado:
+            $ref: 'schemas.yaml#/ESTADO_Vehiculo'
+          dni:
+            $ref: 'schemas.yaml#/DNI_Cliente'
+          
+
+
+
+            

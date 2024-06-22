@@ -1,0 +1,45 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: Gestión de Recambios 
+
+servers:
+  - url: http://127.0.0.1:80/api/v1
+
+tags:
+  - name: Recambio
+    description: Recambio
+
+paths:
+  /recambios: 
+    $ref: 'recambios.yaml'
+  /recambios/{recambio_nSerie}:
+    $ref: 'recambios_ns.yaml'
+
+components:
+  schemas:
+    recambio:
+      $ref: 'schemas.yaml#/Recambio'
+    num_serie:
+      $ref: 'schemas.yaml#/Num_Serie'
+    nombre_recambio:
+      $ref: 'schemas.yaml#/Nombre_Recambio'
+    info_recambio:
+      $ref: 'schemas.yaml#/Info_Recambio'
+    proveedor_recambio:
+      $ref: 'schemas.yaml#/Proveedor_Recambio'
+    garantia_recambio:
+      $ref: 'schemas.yaml#/Garantia_Recambio'
+    precio_recambio:
+      $ref: 'schemas.yaml#/Precio_Recambio'
+    cantidad_recambio:
+      $ref: 'schemas.yaml#/Cantidad_Recambio'
+    equivalencia_recambio:
+      $ref: 'schemas.yaml#/Equivalencia_Recambio'
+      
+    HTTP_Problem:
+      $ref: 'schemas.yaml#/HTTP_Problem'
+    Link:
+      $ref: 'schemas.yaml#/Link'
+  

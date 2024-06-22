@@ -1,0 +1,86 @@
+
+get:
+  summary: Obtiene todos las facturas
+  description: |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+    
+    | Status Code | Descripción | Motivo                             |
+    | ------------| ------------| -----------------------------------|
+    | **200**     | OK          | Listado de facturaes                |
+    | **404**     | NOT FOUND   | No hay ningun factura              |
+  operationId: factura_cget
+  tags: [ 'Factura' ]
+  parameters:
+    - $ref: 'parameters.yaml#/pageParam'
+    - $ref: 'parameters.yaml#/orderParam'
+    - $ref: 'parameters.yaml#/orderingParam'
+  responses:
+    '200':
+      description: Lista de factura
+      headers:
+        ETag:
+          $ref: 'headers.yaml#/ETag'
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              Factura:
+                description: array de factura
+                type: array
+                items:
+                  $ref: 'schemas.yaml#/Factura'
+              links:
+                description: Enlaces de paginación
+                readOnly: true
+                type: object
+                properties:
+                  prevPage:
+                    $ref: 'schemas.yaml#/Link'
+                  nextPage:
+                    $ref: 'schemas.yaml#/Link'
+          examples:
+            factura-example:
+              $ref: 'examples.yaml#/factura-example'
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+options:
+  summary: Proporciona la lista de los métodos HTTP soportados por esta ruta.
+  description: Devuelve una cabecera `Allow` con la lista de métodos HTTP soportados (separados por comas).
+  operationId: factura_coptions
+  tags: [ 'Factura' ]
+  responses:
+    '204':
+      description: 'cabecera `Allow` &lt;El cuerpo de la respuesta está vacío&gt;'
+      headers:
+        Allow:
+          $ref: 'headers.yaml#/Allow'
+post:
+  summary: Añade un nueva factura
+  description: |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+    
+    | Status Code | Descripción          | Motivo                                    |
+    | ------------| ---------------------| ------------------------------------------|
+    | **201**     | CREATED              | La factura ha sido creado                 |
+    | **400**     | BAD REQUEST          | El identificador único ya existe          |
+    | **422**     | UNPROCESSABLE ENTITY | Falta alguno de los atributos obligatorios|
+    |             |                      | o el valor no está permitido              |
+  tags: [ 'Factura' ]
+  operationId: factura_post
+  requestBody:
+    $ref: 'requestBodies.yaml#/facturaRB'
+  responses:
+    '201':
+      description: Nueva factura creada
+      headers:
+        Location:
+          $ref: 'headers.yaml#/Location'
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas.yaml#/Factura'
+    '400':
+      $ref: 'responses.yaml#/Response_400'
+    '422':
+      $ref: 'responses.yaml#/Response_422'

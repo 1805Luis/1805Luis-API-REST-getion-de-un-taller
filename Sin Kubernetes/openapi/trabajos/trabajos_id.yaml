@@ -1,0 +1,81 @@
+
+parameters:
+  - $ref: 'parameters.yaml#/ID'
+options:
+  summary: Proporciona la lista de los métodos HTTP soportados por esta ruta.
+  description: Devuelve una cabecera `Allow` con la lista de métodos HTTP soportados (separados por comas).
+  operationId: trabajo_options
+  tags: [ 'Trabajo' ]
+  responses:
+    '204':
+      description: 'cabecera `Allow` &lt;El cuerpo de la respuesta está vacío&gt;'
+      headers:
+        Allow:
+          $ref: 'headers.yaml#/Allow'
+get:
+  summary: Obtiene un trabajo identificado por `id`
+  description: |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+    
+    | Status Code | Descripción | Motivo                             |
+    | ------------| ------------| -----------------------------------|
+    | **200**     | Existe      | Si el trabajo existe               |
+    | **404**     | No existe   | Si no existe el trabajo            |
+  operationId: trabajo_get
+  tags: [ 'Trabajo' ]
+  responses:
+    '200':
+      description: Trabajo
+      headers:
+        ETag:
+          $ref: 'headers.yaml#/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas.yaml#/Trabajo'
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+delete:
+  summary: Elimina el trabajo identificado por `id`
+  description: |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+    
+    | Status Code      | Descripción  | Motivo                                    |
+    | ---------------- | -------------| ------------------------------------------|
+    | **204**          |SIN CONTENIDO | El trabajo existía y ha sido eliminada    |
+    | **404**          |NO ENCONTRADO | Si el trabajo no existe                   |
+  operationId: trabajo_delete
+  tags: [ 'Trabajo' ]
+  responses:
+    '204':
+      description: trabajo eliminada &lt;Cuerpo de la respuesta vacío&gt;
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+put:
+  tags: [ 'Trabajo' ]
+  summary: Modifica el trabajo identificado por `id`.
+  description:  |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+
+    | Status Code | Descripción            | Motivo                                        |
+    | ------------| -----------------------| ----------------------------------------------|
+    | **209**     | CONTENIDO DEVUELTO     | El trabajo existía y ha sido actualizada      |
+    | **404**     | NO ENCONTRADO          | Si el trabajo no existe                       |
+    | **412**     | CONDICIÓN PREVIA FALLÓ | Si el Tag proporcionado no está actualizado   |
+    | **422**     | ENTIDAD NO PROCESABLE  | Valor no permitido en alguno de los attributos|
+  operationId: trabajo_put
+  parameters:
+    - $ref: 'parameters.yaml#/ifMatchParam'
+  responses:
+    '209':
+      description: '`CONTENT RETURNED`: el trabajo ha sido actualizado'
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas.yaml#/Trabajo'
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+    '412':
+      $ref: 'responses.yaml#/Response_412'
+    '422':
+      $ref: 'responses.yaml#/Response_422'

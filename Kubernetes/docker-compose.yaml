@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+    backend:
+        image: dockerluis02/backend:latest
+        container_name: TallerMecanica_backend
+        command: mock --cors -h 0.0.0.0 "/aos/openapi.yaml"
+        ports:
+          - "4010:4010"
+        
+
+    frontend:
+        image: dockerluis02/frontend:latest
+        container_name: TallerMecanica_frontend
+        ports:
+            - "8000:8080"
+        environment:
+            SWAGGER_JSON: /aos/openapi.yaml
+
+    proxy:
+        image: dockerluis02/proxy:latest
+        container_name: TallerMecanica_proxy
+        ports:
+            - "80:80"
+        depends_on:
+            - backend

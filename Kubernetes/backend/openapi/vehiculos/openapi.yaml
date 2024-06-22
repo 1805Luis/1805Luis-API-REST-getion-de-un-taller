@@ -1,0 +1,40 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: Gestión de Vehiculos 
+
+servers:
+  - url: http://127.0.0.1:80/api/v1
+
+tags:
+  - name: Vehiculo
+    description: Vehiculo
+
+paths:
+  /vehiculos: 
+    $ref: 'vehiculos.yaml'
+  /vehiculos/{vehiculo_VIN}:
+    $ref: 'vehiculos_vin.yaml'
+
+components:
+  schemas:
+    Vehiculo:
+      $ref: 'schemas.yaml#/Vehiculo'
+    VIN_Vehiculo:
+      $ref: 'schemas.yaml#/VIN_Vehiculo'
+    MATRICULA_Vehiculo:
+      $ref: 'schemas.yaml#/MATRICULA_Vehiculo'
+    MODELO_Vehiculo:
+      $ref: 'schemas.yaml#/MODELO_Vehiculo'
+    ESTADO_Vehiculo:
+      $ref: 'schemas.yaml#/ESTADO_Vehiculo'
+    Dni_Cliente:
+      $ref: 'schemas.yaml#/DNI_Cliente'
+    
+      
+    HTTP_Problem:
+      $ref: 'schemas.yaml#/HTTP_Problem'
+    Link:
+      $ref: 'schemas.yaml#/Link'
+  

@@ -1,0 +1,25 @@
+#requestBodies:
+logRB:
+  description: Información de un nuevo recambio
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [id,prioridad,description,subsistema_aplica,fecha]
+        properties:
+          id:
+            $ref: 'schemas.yaml#/ID_Log'
+          prioridad:
+            $ref: 'schemas.yaml#/PRIORIDAD_Log'
+          description:
+            $ref: 'schemas.yaml#/DESCRIPCION_Log'
+          subsistema_aplica:
+            $ref: 'schemas.yaml#/SUBSISTEMA_Log'
+          fecha:
+            $ref: 'schemas.yaml#/FECHA_Log'
+                    
+
+
+
+            

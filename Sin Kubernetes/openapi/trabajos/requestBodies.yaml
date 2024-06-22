@@ -1,0 +1,29 @@
+#requestBodies:
+trabajoRB:
+  description: Información de un nuevo recambio
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [id,tipo,estado,duracion,vin_Vehiculo,vehiculo_aplica]
+        properties:
+          id:
+            $ref: 'schemas.yaml#/ID_Trabajo'
+          tipo:
+            $ref: 'schemas.yaml#/TIPO_Trabajo'
+          description:
+            $ref: 'schemas.yaml#/DESCRIPCION_Trabajo'
+          vehiculo_aplica:
+            $ref: 'schemas.yaml#/VEHICULO_Trabajo'
+          estado:
+            $ref: 'schemas.yaml#/ESTADO_Trabajo'
+          duracion:
+            $ref: 'schemas.yaml#/DURACION_Trabajo'
+          vin_Vehiculo:
+            $ref: 'schemas.yaml#/VIN_Trabajo'
+          
+
+
+
+            

@@ -1,0 +1,26 @@
+#requestBodies:
+recambioRB:
+  description: Información de un nuevo recambio
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [ num_serie, nombre_recambio,proveedor_recambio,precio_recambio]
+        properties:
+          num_serie:
+            $ref: 'schemas.yaml#/Num_Serie'
+          nombre_recambio:
+            $ref: 'schemas.yaml#/Nombre_Recambio'
+          info_recambio:
+            $ref: 'schemas.yaml#/Info_Recambio'
+          proveedor_recambio:
+            $ref: 'schemas.yaml#/Proveedor_Recambio'
+          garantia_recambio:
+            $ref: 'schemas.yaml#/Garantia_Recambio'
+          precio_recambio:
+            $ref: 'schemas.yaml#/Precio_Recambio'
+          cantidad_recambio:
+            $ref: 'schemas.yaml#/Cantidad_Recambio'
+          equivalencia_recambio:
+            $ref: 'schemas.yaml#/Equivalencia_Recambio'

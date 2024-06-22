@@ -1,0 +1,40 @@
+openapi: 3.0.3
+
+info:
+  version: 1.0.0
+  title: Gestión de Notificaciones 
+
+servers:
+  - url: http://127.0.0.1:80/api/v1
+
+tags:
+  - name: Notificacion
+    description: Notificacion
+
+paths:
+  /notificaciones: 
+    $ref: 'notificaciones.yaml'
+  /notificaciones/{notificacion_id}:
+    $ref: 'notificaciones_id.yaml'
+
+components:
+  schemas:
+    Notificacion:
+      $ref: 'schemas.yaml#/Notificacion'
+    ID_Notificacion:
+      $ref: 'schemas.yaml#/ID_Notificacion'
+    TRABAJO_Notificacion:
+      $ref: 'schemas.yaml#/TRABAJO_Notificacion'
+    ESTADO_Notificacion:
+      $ref: 'schemas.yaml#/ESTADO_Notificacion'
+    CREACION_Notificacion:
+      $ref: 'schemas.yaml#/CREACION_Notificacion'
+    DESCRIPCION_Notificacion:
+      $ref: 'schemas.yaml#/DESCRIPCION_Notificacion'
+  
+         
+    HTTP_Problem:
+      $ref: 'schemas.yaml#/HTTP_Problem'
+    Link:
+      $ref: 'schemas.yaml#/Link'
+  

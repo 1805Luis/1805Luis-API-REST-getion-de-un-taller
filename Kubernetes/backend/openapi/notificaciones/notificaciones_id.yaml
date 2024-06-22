@@ -1,0 +1,81 @@
+
+parameters:
+  - $ref: 'parameters.yaml#/ID'
+options:
+  summary: Proporciona la lista de los métodos HTTP soportados por esta ruta.
+  description: Devuelve una cabecera `Allow` con la lista de métodos HTTP soportados (separados por comas).
+  operationId: notificacion_options
+  tags: [ 'Notificacion' ]
+  responses:
+    '204':
+      description: 'cabecera `Allow` &lt;El cuerpo de la respuesta está vacío&gt;'
+      headers:
+        Allow:
+          $ref: 'headers.yaml#/Allow'
+get:
+  summary: Obtiene una notificacion identificada por `id`
+  description: |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+    
+    | Status Code | Descripción | Motivo                             |
+    | ------------| ------------| -----------------------------------|
+    | **200**     | Existe      | Si la notificacion existe          |
+    | **404**     | No existe   | Si no existe la notificacion       |
+  operationId: notificacion_get
+  tags: [ 'Notificacion' ]
+  responses:
+    '200':
+      description: Notificacion
+      headers:
+        ETag:
+          $ref: 'headers.yaml#/ETag'
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas.yaml#/Notificacion'
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+delete:
+  summary: Elimina la notificacion identificada por `id`
+  description: |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+    
+    | Status Code      | Descripción  | Motivo                                      |
+    | ---------------- | -------------| --------------------------------------------|
+    | **204**          |SIN CONTENIDO | La notificacion existía y ha sido eliminada |
+    | **404**          |NO ENCONTRADO | Si la notificacion no existe                |
+  operationId: notificacion_delete
+  tags: [ 'Notificacion' ]
+  responses:
+    '204':
+      description: notificacion eliminada &lt;Cuerpo de la respuesta vacío&gt;
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+put:
+  tags: [ 'Notificacion' ]
+  summary: Modifica la notificacion identificada por `id`.
+  description:  |
+    La siguiente tabla define los códigos de estado que puede devolver este endpoint
+
+    | Status Code | Descripción            | Motivo                                        |
+    | ------------| -----------------------| ----------------------------------------------|
+    | **209**     | CONTENIDO DEVUELTO     | La notificacion existía y ha sido actualizada |
+    | **404**     | NO ENCONTRADO          | Si la notificacion no existe                  |
+    | **412**     | CONDICIÓN PREVIA FALLÓ | Si el Tag proporcionado no está actualizado   |
+    | **422**     | ENTIDAD NO PROCESABLE  | Valor no permitido en alguno de los attributos|
+  operationId: notificacion_put
+  parameters:
+    - $ref: 'parameters.yaml#/ifMatchParam'
+  responses:
+    '209':
+      description: '`CONTENT RETURNED`: la notificacion ha sido actualizada'
+      content:
+        application/json:
+          schema:
+            $ref: 'schemas.yaml#/Notificacion'
+    '404':
+      $ref: 'responses.yaml#/Response_404'
+    '412':
+      $ref: 'responses.yaml#/Response_412'
+    '422':
+      $ref: 'responses.yaml#/Response_422'

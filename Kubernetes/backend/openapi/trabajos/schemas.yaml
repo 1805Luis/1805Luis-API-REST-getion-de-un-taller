@@ -1,0 +1,122 @@
+
+Trabajo:
+  title: 'Servicios del taller'
+  description: >
+    Servicio del taller 
+  type: object
+  properties:
+    trabajo:
+      type: object
+      required: [id,tipo,estado,duracion,vin_Vehiculo,vehiculo_aplica]
+      properties:
+        id:
+          $ref: '#/ID_Trabajo'
+        tipo:
+          $ref: '#/TIPO_Trabajo'
+        description:
+          $ref: '#/DESCRIPCION_Trabajo'
+        vehiculo_aplica:
+          $ref: '#/VEHICULO_Trabajo'
+        estado:
+          $ref: '#/ESTADO_Trabajo'
+        duracion:
+          $ref: '#/DURACION_Trabajo'
+        vin_Vehiculo:
+          $ref: '#/VIN_Trabajo'
+        links:
+          description: Enlaces de relación del vehiculo
+          readOnly: true
+          type: object
+          properties:
+            parent:
+              $ref: '#/Link'
+            self:
+              $ref: '#/Link'
+
+ID_Trabajo:
+  title: Identificador del trabajo
+  type: string
+  pattern: '^[A-Za-z]{2,6}-[0-9]{1,}$'
+  example: "AA-1"
+
+TIPO_Trabajo:
+  title: Tipo de trabajos
+  type: string
+  example: "Limpieza de la carrocería"
+
+DESCRIPCION_Trabajo:
+  title: Descripcion del trabajo
+  type: string
+  example: "Eliminar la suciedad, el polvo, los residuos y otras impurezas que se acumulan en la superficie exterior del automóvil. Esta tarea incluye productos de limpieza adecuados para garantizar que la carrocería del vehículo se mantenga en buenas condiciones y con un aspecto limpio y brillante."
+
+VEHICULO_Trabajo:
+  title: Trabajos sobre determinados vehículos
+  type: string
+  example: "Automoviles, Autobuses"
+
+ESTADO_Trabajo:
+  title: Estado actual del trabajo
+  type: string
+  enum:
+    - Creado
+    - Planificado
+    - Iniciado
+    - Terminado
+
+DURACION_Trabajo:
+  title: Tiempo que se tarda en realizar el trabajo
+  type: string
+  example: "1 hora"
+
+VIN_Trabajo:
+  title: VIN del vehiculo al que se le realiza el trabajo
+  type: string
+  pattern: '^[A-HJ-NPR-Z0-9]{17}$'
+  example: "1HGCM82633A123456"
+
+HTTP_Problem:
+  type: object
+  externalDocs:
+    url: https://tools.ietf.org/html/rfc7807
+  description: |
+    Problem Details for HTTP APIs
+    [https://tools.ietf.org/html/rfc7807](https://tools.ietf.org/html/rfc7807)
+  properties:
+    type:
+      type: string
+      format: uri
+      description: A URI reference [RFC3986] that identifies the problem type
+    title:
+      type: string
+      description: short human-readable summary of the problem type
+    status:
+      type: number
+      description: HTTP status code
+    detail:
+      type: string
+      description: Human-readable explanation specific to this occurrence of the problem
+    instance:
+      type: string
+      format: uri
+      description: >
+        A URI reference that identifies the specific occurrence of the problem.
+        It may or may not yield further information if dereferenced.
+
+Link:
+  description: Enlace de relación
+  title: '🔗 Link'
+  type: object
+  properties:
+    href:
+      description: URL del enlace
+      type: string
+      format: uri
+      x-faker: internet.url
+    rel:
+      description: "Relación del recurso enlazado con el actual. Contiene una lista de tipos
+                de relaciones separados por espacio."
+      type: string
+      x-faker: lorem.words
+  example:
+    href: https://www.example.com/path/resource
+    rel: relAction1 relAction2

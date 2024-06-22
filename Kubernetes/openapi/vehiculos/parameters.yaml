@@ -1,0 +1,46 @@
+#parameters:
+VIN:
+  name: VIN
+  in: path
+  description: Identificador único del vehiculo
+  required: true
+  schema:
+    $ref: 'schemas.yaml#/VIN_Vehiculo'
+ifMatchParam:
+  name: If-Match
+  in: header
+  description: ETag actual del recurso que se desea modificar
+  required: true
+  schema:
+    type: string
+    pattern: "[0-9a-f]*"
+orderParam:
+  name: order
+  in: query
+  description: 'Criterio de ordenación: `VIN`'
+  required: false
+  allowEmptyValue: false
+  schema:
+    type: string
+    enum:
+      - VIN
+orderingParam:
+  name: ordering
+  in: query
+  description: 'Ordenación: `ASC` | `DESC`'
+  required: false
+  allowEmptyValue: false
+  schema:
+    type: string
+    enum:
+      - ASC
+      - DESC
+pageParam:
+  name: page
+  in: query
+  description: 'Número de página'
+  required: false
+  allowEmptyValue: false
+  schema:
+    type: integer
+    minimum: 1

@@ -1,0 +1,31 @@
+#requestBodies:
+facturaRB:
+  description: Información de una nueva factura
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [id,vehiculo,dni_cliente,emision,descripcion,importe,pago,estado]
+        properties:
+          id:
+            $ref: 'schemas.yaml#/ID_Factura'
+          vehiculo:
+            $ref: 'schemas.yaml#/VIN_Factura'
+          dni_cliente:
+            $ref: 'schemas.yaml#/CLIENTE_Factura'
+          emision:
+            $ref: 'schemas.yaml#/CREACION_Factura'
+          descripcion:
+            $ref: 'schemas.yaml#/DESCRIPCION_Factura'
+          importe:
+            $ref: 'schemas.yaml#/IMPORTE_Factura'
+          pago:
+            $ref: 'schemas.yaml#/Pago_Factura'
+          estado:
+           $ref: 'schemas.yaml#/ESTADO_Factura'
+          
+
+
+
+            

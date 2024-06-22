@@ -1,0 +1,25 @@
+#requestBodies:
+notificacionRB:
+  description: Información de un nuevo recambio
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        required: [id,trabajo,cabecera_Notificacion,emision]
+        properties:
+          id:
+            $ref: 'schemas.yaml#/ID_Notificacion'
+          trabajo:
+            $ref: 'schemas.yaml#/TRABAJO_Notificacion'
+          cabecera_Notificacion:
+            $ref: 'schemas.yaml#/ESTADO_Notificacion'
+          emision:
+            $ref: 'schemas.yaml#/CREACION_Notificacion'
+          descripcion:
+            $ref: 'schemas.yaml#/DESCRIPCION_Notificacion'
+          
+
+
+
+            
